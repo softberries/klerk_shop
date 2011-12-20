@@ -1,0 +1,31 @@
+User:
+  - id: 10
+    name: "Krzysztof Grajek"
+    email: "krzysztof.grajek@googlemail.com"
+    phoneNumber: "601689589"
+    userName: kris
+    password: kris
+  - id: 20
+    name: "Tomek Paluch"
+    email: "tomek.paluch@googlemail.com"
+    phoneNumber: "601689589"
+    userName: tomek
+    password: paluch
+  - id: 30
+    name: "Miś Uszatek"
+    email: "mis.uszatek@googlemail.com"
+    phoneNumber: "601689589"
+    userName: mis
+    password: uszatek
+  - id: 40
+    name: "Pszczółka Maja"
+    email: "pszczolka.maja@googlemail.com"
+    phoneNumber: "601689589"
+    userName: pszczolka
+    password: maja
+  - id: 50
+    name: "Bill Gates"
+    email: "bill.gates@googlemail.com"
+    phoneNumber: "601689589"
+    userName: bill
+    password: gates
