@@ -58,8 +58,8 @@
   <dependencies>
 
     <dependency>
-      <groupId>org.arquillian.example</groupId>
-      <artifactId>beer-advisor-core</artifactId>
+      <groupId>com.softberries.klerk</groupId>
+      <artifactId>klerk-core</artifactId>
       <version>${project.version}</version>
     </dependency>
 
@@ -297,7 +297,7 @@
 
   </profiles>
   <build>
-    <finalName>beer-advisor</finalName>
+    <finalName>klerk-web</finalName>
     <pluginManagement>
       <plugins>
         <plugin>
