@@ -25,9 +25,15 @@ public class Product {
 	private String priceGross;
 	private Date dateAdded;
 	private boolean deleted;
+	private User creator;
 	
+
 	@OneToMany(cascade = CascadeType.ALL)
 	private List<ProductPhoto> photos;
+	
+
+	@OneToMany
+	private List<ProductCategory> categories;
 	
 	@OneToMany
 	private List<ProductAttribute> attributes;
@@ -111,6 +117,20 @@ public class Product {
 	public void setDeleted(boolean deleted) {
 		this.deleted = deleted;
 	}
-	
+
+	public List<ProductCategory> getCategories() {
+		return categories;
+	}
+
+	public void setCategories(List<ProductCategory> categories) {
+		this.categories = categories;
+	}
+	public User getCreator() {
+		return creator;
+	}
+
+	public void setCreator(User creator) {
+		this.creator = creator;
+	}
 	
 }

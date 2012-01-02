@@ -14,4 +14,6 @@ public interface UserRepository {
 	Set<User> fetchAll();
 	
 	User findByUsernameAndPassword(String username, String password);
+	
+	void delete(User user);
 }

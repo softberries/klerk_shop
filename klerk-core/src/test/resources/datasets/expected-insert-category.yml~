@@ -1,0 +1,8 @@
+product_category:
+  - id: 1
+    name: "Main Category One"
+    main: true
+  - id: 2
+    name: "Subcategory One"
+    main: false
+    parentCategory: 10
