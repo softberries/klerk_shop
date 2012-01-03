@@ -17,7 +17,7 @@ import javax.validation.constraints.NotNull;
 @Table(name="order")
 public class Order implements Serializable {
 
-	private static final long serialVersionUID = 1L;
+	private static final long serialVersionUID = 3L;
 
 	@Id
 	@GeneratedValue
@@ -33,7 +33,7 @@ public class Order implements Serializable {
 	@OneToMany
 	private List<Product> products;
 	
-	@OneToMany(cascade = CascadeType.ALL, mappedBy="order")
+	@OneToMany
 	private List<Invoice> invoices;
 
 	public Long getId() {
