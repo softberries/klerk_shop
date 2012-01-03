@@ -16,6 +16,7 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 
 import com.softberries.klerk.domain.User;
+import com.softberries.klerk.repository.jpa.JpaUserRepository;
 
 @RunWith(Arquillian.class)
 public class UserRepositoryTest {
@@ -23,7 +24,9 @@ public class UserRepositoryTest {
 	@Deployment
 	public static Archive<?> createDeployment() {
 		return ShrinkWrap.create(JavaArchive.class, "test.jar").addPackage(User.class.getPackage())
-				.addPackage(UserRepository.class.getPackage()).addPackages(true, "org.fest")
+				.addPackage(UserRepository.class.getPackage())
+				.addPackage(JpaUserRepository.class.getPackage())
+				.addPackages(true, "org.fest")
 				.addAsManifestResource(EmptyAsset.INSTANCE, "beans.xml").addAsManifestResource("test-persistence.xml", "persistence.xml");
 	}
 

@@ -1,0 +1,10 @@
+product_attribute:
+  - id: 1
+    name: "Combo box options"
+    main: true
+    type: 1
+product_attribute_value:
+  - id: 2
+    value: "Option One"
+  - id: 3
+    value: "Option Two"

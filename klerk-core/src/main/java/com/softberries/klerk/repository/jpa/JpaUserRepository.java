@@ -1,4 +1,4 @@
-package com.softberries.klerk.repository;
+package com.softberries.klerk.repository.jpa;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -13,6 +13,7 @@ import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
 
 import com.softberries.klerk.domain.User;
+import com.softberries.klerk.repository.UserRepository;
 
 @RequestScoped
 public class JpaUserRepository implements UserRepository {

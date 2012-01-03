@@ -19,14 +19,17 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 
 import com.softberries.klerk.domain.ProductCategory;
+import com.softberries.klerk.repository.jpa.JpaProductCategoryRepository;
 
 @RunWith(Arquillian.class)
-public class ProductCategoryTest {
+public class ProductCategoryRepositoryTest {
 
 	@Deployment
 	public static Archive<?> createDeployment() {
 		return ShrinkWrap.create(JavaArchive.class, "test.jar").addPackage(ProductCategory.class.getPackage())
-				.addPackage(ProductCategoryRepository.class.getPackage()).addPackages(true, "org.fest")
+				.addPackage(ProductCategoryRepository.class.getPackage())
+				.addPackage(JpaProductCategoryRepository.class.getPackage())
+				.addPackages(true, "org.fest")
 				.addAsManifestResource(EmptyAsset.INSTANCE, "beans.xml").addAsManifestResource("test-persistence.xml", "persistence.xml");
 	}
 

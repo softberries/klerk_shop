@@ -1,5 +1,6 @@
 package com.softberries.klerk.domain;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -8,6 +9,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
@@ -16,7 +18,7 @@ import javax.validation.constraints.NotNull;
 
 @Entity
 @Table(name="product_category")
-public class ProductCategory{
+public class ProductCategory implements Serializable{
 
 	@Id
 	@GeneratedValue
@@ -28,6 +30,9 @@ public class ProductCategory{
 	@NotNull
 	private boolean main;
 
+	@ManyToMany(mappedBy="categories")
+	private List<Product> products;
+	
 	@OneToMany(mappedBy="category")
 	private List<CategoryPhoto> photos;
 	
@@ -95,6 +100,12 @@ public class ProductCategory{
 	public void setMain(boolean main) {
 		this.main = main;
 	}
-	
-	
+
+	public List<Product> getProducts() {
+		return products;
+	}
+
+	public void setProducts(List<Product> products) {
+		this.products = products;
+	}
 }

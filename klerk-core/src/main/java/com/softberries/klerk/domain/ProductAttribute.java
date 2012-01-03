@@ -1,5 +1,6 @@
 package com.softberries.klerk.domain;
 
+import java.io.Serializable;
 import java.util.List;
 
 import javax.persistence.Entity;
@@ -14,7 +15,7 @@ import javax.validation.constraints.NotNull;
 
 @Entity
 @Table(name="product_attribute")
-public class ProductAttribute {
+public class ProductAttribute implements Serializable{
 
 	@Id
 	@GeneratedValue

@@ -1,5 +1,6 @@
 package com.softberries.klerk.domain;
 
+import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 
@@ -7,12 +8,15 @@ import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
 @Table(name="product")
-public class Product {
+public class Product  implements Serializable{
+
+	private static final long serialVersionUID = 1L;
 
 	@Id
 	@GeneratedValue
@@ -28,11 +32,11 @@ public class Product {
 	private User creator;
 	
 
-	@OneToMany(cascade = CascadeType.ALL)
+	@OneToMany(cascade = CascadeType.ALL, mappedBy="product")
 	private List<ProductPhoto> photos;
 	
 
-	@OneToMany
+	@ManyToMany
 	private List<ProductCategory> categories;
 	
 	@OneToMany

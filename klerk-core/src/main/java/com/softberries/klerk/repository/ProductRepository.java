@@ -14,4 +14,6 @@ public interface ProductRepository {
 
 	Set<Product> fetchAll();
 	
+	void delete(Long id);
+	
 }

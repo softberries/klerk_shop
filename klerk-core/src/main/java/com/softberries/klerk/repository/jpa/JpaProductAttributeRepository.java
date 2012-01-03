@@ -1,4 +1,4 @@
-package com.softberries.klerk.repository;
+package com.softberries.klerk.repository.jpa;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -11,6 +11,7 @@ import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
 
 import com.softberries.klerk.domain.ProductAttribute;
+import com.softberries.klerk.repository.ProductAttributeRepository;
 
 @RequestScoped
 public class JpaProductAttributeRepository implements ProductAttributeRepository{

@@ -1,4 +1,4 @@
-package com.softberries.klerk.repository;
+package com.softberries.klerk.repository.jpa;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -10,6 +10,7 @@ import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
 import com.softberries.klerk.domain.Product;
+import com.softberries.klerk.repository.ProductRepository;
 
 @RequestScoped
 public class JpaProductRepository implements ProductRepository{
@@ -42,6 +43,12 @@ public class JpaProductRepository implements ProductRepository{
 		result.addAll(em.createQuery(select).getResultList());
 
 		return result;
+	}
+
+	@Override
+	public void delete(Long id) {
+		Product p = em.find(Product.class, id);
+		em.remove(p);
 	}
 
 }

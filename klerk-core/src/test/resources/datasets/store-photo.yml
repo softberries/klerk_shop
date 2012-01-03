@@ -1,0 +1,9 @@
+product:
+  - name: "Product One"
+    description: "Product One Description"
+store_photo:
+  - fullPhotoUrl: "fullPhotoUrl"
+    smallPhotoUrl: "smallPhotoUrl"
+    thumbPhotoUrl: "thumbPhotoUrl"
+    product_photo: 1
+
