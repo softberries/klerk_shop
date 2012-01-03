@@ -22,6 +22,7 @@ public class Order implements Serializable {
 	@Id
 	@GeneratedValue
 	private Long id;
+	
 	private Date dateStarted;
 	private Date dateFinished;
 	
