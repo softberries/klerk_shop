@@ -9,6 +9,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
@@ -41,6 +42,7 @@ public class Product  implements Serializable{
 	
 	@OneToMany
 	private List<ProductAttribute> attributes;
+	
 
 	public Long getId() {
 		return id;
@@ -136,5 +138,4 @@ public class Product  implements Serializable{
 	public void setCreator(User creator) {
 		this.creator = creator;
 	}
-	
 }

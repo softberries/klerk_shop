@@ -28,9 +28,8 @@ public class ProductAttributeRepositoryTest {
 
 	@Deployment
 	public static Archive<?> createDeployment() {
-		return ShrinkWrap.create(JavaArchive.class, "test.jar").addPackage(ProductAttribute.class.getPackage())
-				.addPackage(ProductAttributeRepository.class.getPackage())
-				.addPackage(JpaProductAttributeRepository.class.getPackage())
+		return ShrinkWrap.create(JavaArchive.class, "test.jar")
+				.addPackages(true, "com.softberries.klerk")
 				.addPackages(true, "org.fest")
 				.addAsManifestResource(EmptyAsset.INSTANCE, "beans.xml").addAsManifestResource("test-persistence.xml", "persistence.xml");
 	}

@@ -1,9 +1,13 @@
 product:
-  - name: "Product One"
+  - id: 1
+    name: "Product One"
     description: "Product One Description"
+    deleted: false
 store_photo:
-  - fullPhotoUrl: "fullPhotoUrl"
+  - id: 1
+    fullPhotoUrl: "fullPhotoUrl"
     smallPhotoUrl: "smallPhotoUrl"
     thumbPhotoUrl: "thumbPhotoUrl"
-    product_photo: 3
+    product_photo: 1
+    dtype: "ProductPhoto"
 

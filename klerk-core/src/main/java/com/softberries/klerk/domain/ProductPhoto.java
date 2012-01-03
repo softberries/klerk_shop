@@ -9,6 +9,8 @@ import javax.persistence.ManyToOne;
 @Entity
 public class ProductPhoto extends StorePhoto implements Serializable{
 
+	private static final long serialVersionUID = 1L;
+	
 	@ManyToOne
 	@JoinColumn(name="product_photo")
 	private Product product;

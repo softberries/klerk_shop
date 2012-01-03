@@ -1,24 +1,33 @@
 package com.softberries.klerk.domain;
 
+import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
 
 @Entity
 @Table(name="order")
-public class Order {
+public class Order implements Serializable {
+
+	private static final long serialVersionUID = 1L;
 
 	@Id
 	@GeneratedValue
 	private Long id;
 	private Date dateStarted;
 	private Date dateFinished;
+	
+	@NotNull
+	@Enumerated
+	private OrderStatus status;
 	
 	@OneToMany
 	private List<Product> products;
@@ -65,4 +74,13 @@ public class Order {
 	public void setInvoices(List<Invoice> invoices) {
 		this.invoices = invoices;
 	}
+
+	public OrderStatus getStatus() {
+		return status;
+	}
+
+	public void setStatus(OrderStatus status) {
+		this.status = status;
+	}
+	
 }

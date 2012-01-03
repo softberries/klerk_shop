@@ -23,9 +23,8 @@ public class UserRepositoryTest {
 
 	@Deployment
 	public static Archive<?> createDeployment() {
-		return ShrinkWrap.create(JavaArchive.class, "test.jar").addPackage(User.class.getPackage())
-				.addPackage(UserRepository.class.getPackage())
-				.addPackage(JpaUserRepository.class.getPackage())
+		return ShrinkWrap.create(JavaArchive.class, "test.jar")
+				.addPackages(true, "com.softberries.klerk")
 				.addPackages(true, "org.fest")
 				.addAsManifestResource(EmptyAsset.INSTANCE, "beans.xml").addAsManifestResource("test-persistence.xml", "persistence.xml");
 	}

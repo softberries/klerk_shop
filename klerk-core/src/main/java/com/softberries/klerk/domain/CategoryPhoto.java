@@ -9,6 +9,8 @@ import javax.persistence.Table;
 @Table(name="category_photo")
 public class CategoryPhoto extends StorePhoto {
 
+	private static final long serialVersionUID = 1L;
+	
 	@ManyToOne
 	@JoinColumn(name="category_photo")
 	private ProductCategory category;

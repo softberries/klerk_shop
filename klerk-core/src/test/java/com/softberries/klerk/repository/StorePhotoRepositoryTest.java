@@ -2,11 +2,15 @@ package com.softberries.klerk.repository;
 
 import static org.fest.assertions.Assertions.assertThat;
 
+import java.util.List;
+import java.util.Set;
+
 import javax.inject.Inject;
 
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.junit.Arquillian;
 import org.jboss.arquillian.persistence.ShouldMatchDataSet;
+import org.jboss.arquillian.persistence.UsingDataSet;
 import org.jboss.shrinkwrap.api.Archive;
 import org.jboss.shrinkwrap.api.ShrinkWrap;
 import org.jboss.shrinkwrap.api.asset.EmptyAsset;
@@ -24,9 +28,8 @@ public class StorePhotoRepositoryTest {
 
 	@Deployment
 	public static Archive<?> createDeployment() {
-		return ShrinkWrap.create(JavaArchive.class, "test.jar").addPackage(StorePhoto.class.getPackage())
-				.addPackage(StorePhotoRepository.class.getPackage())
-				.addPackage(JpaStorePhotoRepository.class.getPackage())
+		return ShrinkWrap.create(JavaArchive.class, "test.jar")
+				.addPackages(true, "com.softberries.klerk")
 				.addPackages(true, "org.fest")
 				.addAsManifestResource(EmptyAsset.INSTANCE, "beans.xml").addAsManifestResource("test-persistence.xml", "persistence.xml");
 	}
@@ -49,7 +52,6 @@ public class StorePhotoRepositoryTest {
 	@ShouldMatchDataSet("store-photo.yml")
 	public void shouldSaveStorePhotoForProduct() throws Exception{
 		//given
-		int expectedSizeOfProductPhotos = 1;
 		Product p = new Product();
 		p.setName("Product One");
 		p.setDescription("Product One Description");
@@ -67,5 +69,23 @@ public class StorePhotoRepositoryTest {
 		
 		//then
 		//should match data set
+	}
+	@Test
+	@UsingDataSet("store-photo.yml")
+	public void shouldFindSingleProductPhoto() throws Exception{
+		//given
+		int expectedSizeOfProductPhotos = 1;
+		//when
+		Product p = productRepository.getById(new Long(1));
+		
+		assertThat(p).isNotNull();
+		assertThat(p.getPhotos()).isNotNull();
+		int size = p.getPhotos().size();
+		assertThat(p.getPhotos().size()).isEqualTo(expectedSizeOfProductPhotos);
+		
+		//then
+		List<ProductPhoto> photos = storePhotoRepository.findProductPhotos(p.getId());
+		assertThat(photos).isNotNull();
+		assertThat(photos.size()).isEqualTo(expectedSizeOfProductPhotos);
 	}
 }

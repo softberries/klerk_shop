@@ -26,9 +26,8 @@ public class ProductCategoryRepositoryTest {
 
 	@Deployment
 	public static Archive<?> createDeployment() {
-		return ShrinkWrap.create(JavaArchive.class, "test.jar").addPackage(ProductCategory.class.getPackage())
-				.addPackage(ProductCategoryRepository.class.getPackage())
-				.addPackage(JpaProductCategoryRepository.class.getPackage())
+		return ShrinkWrap.create(JavaArchive.class, "test.jar")
+				.addPackages(true, "com.softberries.klerk")
 				.addPackages(true, "org.fest")
 				.addAsManifestResource(EmptyAsset.INSTANCE, "beans.xml").addAsManifestResource("test-persistence.xml", "persistence.xml");
 	}

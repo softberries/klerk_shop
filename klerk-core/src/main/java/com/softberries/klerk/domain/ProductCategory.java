@@ -20,6 +20,8 @@ import javax.validation.constraints.NotNull;
 @Table(name="product_category")
 public class ProductCategory implements Serializable{
 
+	private static final long serialVersionUID = 1L;
+
 	@Id
 	@GeneratedValue
 	private Long id;

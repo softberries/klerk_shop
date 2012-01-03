@@ -16,8 +16,8 @@ public class StorePhoto  implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 	
-	@GeneratedValue
 	@Id
+	@GeneratedValue
 	public Long id;
 	public String fullPhotoUrl;
 	public String smallPhotoUrl;
