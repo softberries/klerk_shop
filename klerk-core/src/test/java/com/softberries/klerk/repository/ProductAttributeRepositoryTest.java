@@ -17,6 +17,7 @@ import org.jboss.shrinkwrap.api.spec.JavaArchive;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
+import com.softberries.klerk.domain.Order;
 import com.softberries.klerk.domain.ProductAttribute;
 import com.softberries.klerk.domain.ProductAttributeType;
 import com.softberries.klerk.domain.ProductAttributeValue;
@@ -38,6 +39,7 @@ public class ProductAttributeRepositoryTest {
 	ProductAttributeRepository paRepository;
 	@Inject
 	ProductAttributeValueRepository pavRepository;
+
 	
 	@Test
 	public void shouldNotBeNull() throws Exception {

@@ -7,6 +7,7 @@ import javax.inject.Inject;
 
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.junit.Arquillian;
+import org.jboss.arquillian.persistence.ShouldMatchDataSet;
 import org.jboss.arquillian.persistence.UsingDataSet;
 import org.jboss.shrinkwrap.api.Archive;
 import org.jboss.shrinkwrap.api.ShrinkWrap;
@@ -40,7 +41,7 @@ public class OrderRepositoryTest {
 		assertThat(orderRepository).isNotNull();
 	}
 	@Test
-	@UsingDataSet("orders.yml")
+	@ShouldMatchDataSet("orders.yml")
 	public void shouldFireOrderStatusChangedEvent() throws Exception{
 		
 		//given

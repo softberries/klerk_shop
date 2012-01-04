@@ -7,6 +7,7 @@ import javax.persistence.Entity;
 import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
@@ -27,8 +28,7 @@ public class Invoice implements Serializable{
 	@NotNull
 	@Enumerated
 	private InvoiceType invoiceType;
-
-
+	
 	public Long getId() {
 		return id;
 	}
