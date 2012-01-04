@@ -19,27 +19,30 @@ import org.hibernate.validator.constraints.NotEmpty;
 @XmlRootElement
 @Table(name="user", uniqueConstraints = @UniqueConstraint(columnNames = "email"))
 public class User implements Serializable {
-    /** Default value included to remove warning. Remove or modify at will. **/
+	/** Default value included to remove warning. Remove or modify at will. **/
     private static final long serialVersionUID = 1L;
 
     private Long id;
     private String name;
     private String email;
     private String phoneNumber;
-    
-    private String username;
+    private boolean activated;
+    private boolean newsletterSubscribed;
+    private String resetPasswordCode;
+    private String activationCode;
     private String password;
 
     public User(){
     	//satisfying JPA requirements
     }
-    public User(Long id, String name, String email, String phoneNr,String username, String pass){
+    public User(Long id, String name, String email, String phoneNr, String pass, boolean nwsLtrSubscr){
     	this.id = id;
     	this.name = name;
     	this.email = email;
     	this.phoneNumber = phoneNr;
-    	this.username = username;
     	this.password = pass;
+    	this.activated = false;
+    	this.newsletterSubscribed = nwsLtrSubscr;
     }
     @Id
     @GeneratedValue
@@ -81,14 +84,6 @@ public class User implements Serializable {
         this.phoneNumber = phoneNumber;
     }
 
-	public String getUsername() {
-		return username;
-	}
-
-	public void setUsername(String username) {
-		this.username = username;
-	}
-
 	public String getPassword() {
 		return password;
 	}
@@ -96,6 +91,34 @@ public class User implements Serializable {
 	public void setPassword(String password) {
 		this.password = password;
 	}
-    
-    
+	public boolean isActivated() {
+		return activated;
+	}
+	public void setActivated(boolean activated) {
+		this.activated = activated;
+	}
+	public boolean isNewsletterSubscribed() {
+		return newsletterSubscribed;
+	}
+	public void setNewsletterSubscribed(boolean newsletterSubscribed) {
+		this.newsletterSubscribed = newsletterSubscribed;
+	}
+	public String getResetPasswordCode() {
+		return resetPasswordCode;
+	}
+	public void setResetPasswordCode(String resetPasswordCode) {
+		this.resetPasswordCode = resetPasswordCode;
+	}
+	public String getActivationCode() {
+		return activationCode;
+	}
+	public void setActivationCode(String activationCode) {
+		this.activationCode = activationCode;
+	}
+	@Override
+	public String toString() {
+		return "User [id=" + id + ", name=" + name + ", email=" + email + ", phoneNumber=" + phoneNumber + ", activated=" + activated
+				+ ", newsletterSubscribed=" + newsletterSubscribed + ", tempPassword=" + resetPasswordCode + ", password=" + password + "]";
+	}
+	
 }

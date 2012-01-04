@@ -62,7 +62,7 @@ public class UserRepositoryTest {
 	@ShouldMatchDataSet("expected-insert-user.yml")
 	public void shouldSaveNewUser() throws Exception{
 		//when
-		User u = new User(null, "name","email@email.com", "0002224344", "username", "password");
+		User u = new User(null, "name","email@email.com", "0002224344", "password", true);
 		userRepository.save(u);
 		assertThat(userRepository).isNotNull();
 	}
@@ -71,7 +71,7 @@ public class UserRepositoryTest {
 	@ShouldMatchDataSet("expected-insert-user.yml")
 	public void shouldThrowAssertionErrorOnEmail() throws Exception{
 		//when
-		User u = new User(null, "name","some_wrong_email_address", "0002224344", "username", "password");
+		User u = new User(null, "name","some_wrong_email_address", "0002224344", "password", true);
 		userRepository.save(u);
 		
 		//then exception should be thrown
@@ -81,12 +81,12 @@ public class UserRepositoryTest {
 	@UsingDataSet("users.yml")
 	public void shouldFindByUsernameAndPassword() throws Exception{
 		//given
-		String username = "kris";
-		String password = "kris";
+		String password = "$2a$10$aOn3On97RJYUoxFyZWFlCe2kYvjw53mltSTMUfpEA8QOCFx14hD6S";
+		String email = "krzysztof.grajek@googlemail.com";
 		String expectedName = "Krzysztof Grajek";
 		
 		//when
-		User u = userRepository.findByUsernameAndPassword(username, password);
+		User u = userRepository.findByEmailAndPassword(email, password);
 		
 		//then
 		assertThat(u).isNotNull();
@@ -96,11 +96,11 @@ public class UserRepositoryTest {
 	@UsingDataSet("users.yml")
 	public void shouldThrowNoResultExceptionOnLogin() throws Exception{
 		//given
-		String username = "asdfasdf";
+		String email = "asdfasdf";
 		String password = "12341234";
 		
 		//when
-		User u = userRepository.findByUsernameAndPassword(username, password);
+		User u = userRepository.findByEmailAndPassword(email, password);
 		
 		//then
 		assertThat(u).isNull();

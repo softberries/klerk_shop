@@ -3,14 +3,14 @@ User:
     name: "Krzysztof Grajek"
     email: "krzysztof.grajek@googlemail.com"
     phoneNumber: "601689589"
-    password: "$2a$10$aOn3On97RJYUoxFyZWFlCe2kYvjw53mltSTMUfpEA8QOCFx14hD6S"
+    password: $2a$10$aOn3On97RJYUoxFyZWFlCe2kYvjw53mltSTMUfpEA8QOCFx14hD6S
     activated: true
     newsletterSubscribed: false
   - id: 20
     name: "Tomek Paluch"
     email: "tomek.paluch@googlemail.com"
     phoneNumber: "601689589"
-    password: "$2a$10$aOn3On97RJYUoxFyZWFlCe2kYvjw53mltSTMUfpEA8QOCFx14hD6S"
+    password: $2a$10$aOn3On97RJYUoxFyZWFlCe2kYvjw53mltSTMUfpEA8QOCFx14hD6S
     activated: false
     newsletterSubscribed: true
   - id: 30

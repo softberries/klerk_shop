@@ -49,14 +49,66 @@ public class JpaUserRepository implements UserRepository {
 	}
 
 	@Override
-	public User findByUsernameAndPassword(String username, String password) {
+	public User findByEmailAndPassword(String email, String password) {
 		try {
-			Query query = em.createQuery("SELECT u FROM User u WHERE u.username = :username AND u.password = :password");
-			query.setParameter("username", username);
+			Query query = em.createQuery("SELECT u FROM User u WHERE u.email = :email AND u.password = :password");
+			query.setParameter("email", email);
 			query.setParameter("password", password);
 			return (User) query.getSingleResult();
 		} catch (NoResultException e) {
 			return null;
+		}
+	}
+
+	@Override
+	public User findActivatedByEmail(String email) {
+		try {
+			Query query = em.createQuery("SELECT u FROM User u WHERE u.email = :email AND u.activated = :active");
+			query.setParameter("email", email);
+			query.setParameter("active", true);
+			return (User) query.getSingleResult();
+		} catch (NoResultException e) {
+			return null;
+		}
+	}
+
+	@Override
+	public User findByEmail(String email) {
+		try {
+			Query query = em.createQuery("SELECT u FROM User u WHERE u.email = :email");
+			query.setParameter("email", email);
+			return (User) query.getSingleResult();
+		} catch (NoResultException e) {
+			return null;
+		}
+	}
+	
+	
+
+	@Override
+	public User findByResetCodeAndEmail(String resetCode, String email) {
+		try {
+			Query query = em.createQuery("SELECT u FROM User u WHERE u.email = :email AND u.resetPasswordCode = :code");
+			query.setParameter("email", email);
+			query.setParameter("code", resetCode);
+			return (User) query.getSingleResult();
+		} catch (NoResultException e) {
+			return null;
+		}
+	}
+
+	@Override
+	public void activateUser(String email, String activationCode) {
+		try {
+			Query query = em.createQuery("SELECT u FROM User u WHERE u.email = :email AND u.activationCode = :code");
+			query.setParameter("email", email);
+			query.setParameter("code", activationCode);
+			User u = (User) query.getSingleResult();
+			u.setActivated(true);
+			em.merge(u);
+			em.flush();
+		} catch (NoResultException e) {
+			e.printStackTrace();
 		}
 	}
 

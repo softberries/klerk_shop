@@ -3,6 +3,7 @@ User:
     name: "name"
     email: "email@email.com"
     phoneNumber: "0002224344"
-    userName: "username"
     password: "password"
+    activated: false
+    newsletterSubscribed: true
 

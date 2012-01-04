@@ -1,8 +1,9 @@
 User:
-  - id: 2
+  - id: 1
     name: "name"
     email: "email@email.com"
     phoneNumber: "0002224344"
-    userName: "username"
     password: "password"
+    activated: false
+    newsletterSubscribed: true
 
