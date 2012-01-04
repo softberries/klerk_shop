@@ -51,7 +51,7 @@ public class JpaUserRepository implements UserRepository {
 	@Override
 	public StoreUser findByEmailAndPassword(String email, String password) {
 		try {
-			Query query = em.createQuery("SELECT u FROM User u WHERE u.email = :email AND u.password = :password");
+			Query query = em.createQuery("SELECT u FROM StoreUser u WHERE u.email = :email AND u.password = :password");
 			query.setParameter("email", email);
 			query.setParameter("password", password);
 			return (StoreUser) query.getSingleResult();
@@ -63,7 +63,7 @@ public class JpaUserRepository implements UserRepository {
 	@Override
 	public StoreUser findActivatedByEmail(String email) {
 		try {
-			Query query = em.createQuery("SELECT u FROM User u WHERE u.email = :email AND u.activated = :active");
+			Query query = em.createQuery("SELECT u FROM StoreUser u WHERE u.email = :email AND u.activated = :active");
 			query.setParameter("email", email);
 			query.setParameter("active", true);
 			return (StoreUser) query.getSingleResult();
@@ -75,7 +75,7 @@ public class JpaUserRepository implements UserRepository {
 	@Override
 	public StoreUser findByEmail(String email) {
 		try {
-			Query query = em.createQuery("SELECT u FROM User u WHERE u.email = :email");
+			Query query = em.createQuery("SELECT u FROM StoreUser u WHERE u.email = :email");
 			query.setParameter("email", email);
 			return (StoreUser) query.getSingleResult();
 		} catch (NoResultException e) {
@@ -88,7 +88,7 @@ public class JpaUserRepository implements UserRepository {
 	@Override
 	public StoreUser findByResetCodeAndEmail(String resetCode, String email) {
 		try {
-			Query query = em.createQuery("SELECT u FROM User u WHERE u.email = :email AND u.resetPasswordCode = :code");
+			Query query = em.createQuery("SELECT u FROM StoreUser u WHERE u.email = :email AND u.resetPasswordCode = :code");
 			query.setParameter("email", email);
 			query.setParameter("code", resetCode);
 			return (StoreUser) query.getSingleResult();
@@ -100,7 +100,7 @@ public class JpaUserRepository implements UserRepository {
 	@Override
 	public void activateUser(String email, String activationCode) {
 		try {
-			Query query = em.createQuery("SELECT u FROM User u WHERE u.email = :email AND u.activationCode = :code");
+			Query query = em.createQuery("SELECT u FROM StoreUser u WHERE u.email = :email AND u.activationCode = :code");
 			query.setParameter("email", email);
 			query.setParameter("code", activationCode);
 			StoreUser u = (StoreUser) query.getSingleResult();

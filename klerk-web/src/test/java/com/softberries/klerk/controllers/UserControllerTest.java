@@ -25,10 +25,9 @@ public class UserControllerTest {
 
 	@Deployment
 	public static Archive<?> createDeployment() {
-		return ShrinkWrap.create(JavaArchive.class, "test.jar").addPackage(StoreUser.class.getPackage())
-				.addPackage(UserRepository.class.getPackage()).addPackage(UniqueStringUtil.class.getPackage())
-				.addPackage(Secure.class.getPackage())
-				.addPackage(JpaUserRepository.class.getPackage()).addPackage(SecurityInterceptor.class.getPackage()).addPackages(true, "org.fest").addPackages(true, "com.softberries.klerk")
+		return ShrinkWrap.create(JavaArchive.class, "test.jar")
+				.addPackages(true, "org.fest")
+				.addPackages(true, "com.softberries.klerk")
 				.addPackages(true, "org.mindrot.jbcrypt")
 				.addAsManifestResource("test-beans.xml", "beans.xml")
 				.addAsManifestResource("test-persistence.xml", "persistence.xml");
