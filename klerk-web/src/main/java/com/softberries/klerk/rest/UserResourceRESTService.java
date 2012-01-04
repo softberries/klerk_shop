@@ -11,7 +11,7 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
-import com.softberries.klerk.domain.User;
+import com.softberries.klerk.domain.StoreUser;
 import com.softberries.klerk.repository.UserRepository;
 
 /**
@@ -27,14 +27,14 @@ public class UserResourceRESTService {
 
     @GET
     @Produces( { MediaType.APPLICATION_XML })
-    public Set<User> listAllUsers() {
-        final Set<User> results = userRepository.fetchAll();
+    public Set<StoreUser> listAllUsers() {
+        final Set<StoreUser> results = userRepository.fetchAll();
         return results;
     }
 
     @GET
     @Path("/{id:[1-9][0-9]*}")
-    public User lookupUserById(@PathParam("id") long id) {
+    public StoreUser lookupUserById(@PathParam("id") long id) {
         return userRepository.getById(id);
     }
 }

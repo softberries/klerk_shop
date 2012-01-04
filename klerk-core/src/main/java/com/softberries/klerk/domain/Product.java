@@ -30,7 +30,7 @@ public class Product  implements Serializable{
 	private String priceGross;
 	private Date dateAdded;
 	private boolean deleted;
-	private User creator;
+	private StoreUser creator;
 	
 
 	@OneToMany(cascade = CascadeType.ALL, mappedBy="product")
@@ -131,11 +131,11 @@ public class Product  implements Serializable{
 	public void setCategories(List<ProductCategory> categories) {
 		this.categories = categories;
 	}
-	public User getCreator() {
+	public StoreUser getCreator() {
 		return creator;
 	}
 
-	public void setCreator(User creator) {
+	public void setCreator(StoreUser creator) {
 		this.creator = creator;
 	}
 }

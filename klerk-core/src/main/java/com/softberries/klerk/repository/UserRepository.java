@@ -2,26 +2,26 @@ package com.softberries.klerk.repository;
 
 import java.util.Set;
 
-import com.softberries.klerk.domain.User;
+import com.softberries.klerk.domain.StoreUser;
 
 
 public interface UserRepository {
 
-	void save(User user);
+	void save(StoreUser user);
 
-	User getById(Long id);
+	StoreUser getById(Long id);
 
-	Set<User> fetchAll();
+	Set<StoreUser> fetchAll();
 	
-	User findByEmailAndPassword(String username, String password);
+	StoreUser findByEmailAndPassword(String username, String password);
 	
-	User findActivatedByEmail(String email);
+	StoreUser findActivatedByEmail(String email);
 	
-	User findByEmail(String email);
+	StoreUser findByEmail(String email);
 	
-	User findByResetCodeAndEmail(String resetCode, String email);
+	StoreUser findByResetCodeAndEmail(String resetCode, String email);
 	
 	void activateUser(String email, String activationCode);
 	
-	void delete(User user);
+	void delete(StoreUser user);
 }

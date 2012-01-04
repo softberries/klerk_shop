@@ -13,7 +13,7 @@ import org.jboss.shrinkwrap.api.spec.JavaArchive;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
-import com.softberries.klerk.domain.User;
+import com.softberries.klerk.domain.StoreUser;
 import com.softberries.klerk.repository.UserRepository;
 import com.softberries.klerk.repository.jpa.JpaUserRepository;
 import com.softberries.klerk.security.Secure;
@@ -25,7 +25,7 @@ public class UserControllerTest {
 
 	@Deployment
 	public static Archive<?> createDeployment() {
-		return ShrinkWrap.create(JavaArchive.class, "test.jar").addPackage(User.class.getPackage())
+		return ShrinkWrap.create(JavaArchive.class, "test.jar").addPackage(StoreUser.class.getPackage())
 				.addPackage(UserRepository.class.getPackage()).addPackage(UniqueStringUtil.class.getPackage())
 				.addPackage(Secure.class.getPackage())
 				.addPackage(JpaUserRepository.class.getPackage()).addPackage(SecurityInterceptor.class.getPackage()).addPackages(true, "org.fest").addPackages(true, "com.softberries.klerk")
@@ -45,7 +45,7 @@ public class UserControllerTest {
 	@Test
 	public void registerUserTest() throws Exception {
 		// given
-		User u = new User(null, "kris", "krzysztof.grajek@googlemail.com", "0601689689", "kris", true);
+		StoreUser u = new StoreUser(null, "kris", "krzysztof.grajek@googlemail.com", "0601689689", "kris", true);
 
 		// when
 		controller.registerUser(u);
@@ -98,7 +98,7 @@ public class UserControllerTest {
 	@Test
 	public void activateUserTest() throws Exception {
 		// given
-		User u = new User(null, "kris", "krzysztof.grajek@googlemail.com", "0601689689", "kris", true);
+		StoreUser u = new StoreUser(null, "kris", "krzysztof.grajek@googlemail.com", "0601689689", "kris", true);
 		// when
 		controller.registerUser(u);
 		// then
@@ -152,8 +152,8 @@ public class UserControllerTest {
 		String email_2 = "kris.g@gmail.com"; //should return false
 		
 		//when
-		boolean test_1 = controller.checkUserExists(new User(null,"",email_1,"","",false));
-		boolean test_2 = controller.checkUserExists(new User(null,"",email_2,"","",false));
+		boolean test_1 = controller.checkUserExists(new StoreUser(null,"",email_1,"","",false));
+		boolean test_2 = controller.checkUserExists(new StoreUser(null,"",email_2,"","",false));
 		
 		//then
 		assertThat(test_1).isTrue();

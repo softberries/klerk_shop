@@ -13,7 +13,7 @@ import javax.inject.Named;
 
 import org.mindrot.jbcrypt.BCrypt;
 
-import com.softberries.klerk.domain.User;
+import com.softberries.klerk.domain.StoreUser;
 import com.softberries.klerk.exception.AuthenticationException;
 import com.softberries.klerk.exception.AuthorizationException;
 import com.softberries.klerk.repository.UserRepository;
@@ -32,11 +32,11 @@ public class UserController implements Serializable {
 	@Inject
 	private UniqueStringUtil util;
 	
-	private User currentUser;
+	private StoreUser currentUser;
 	
 	
 	public void login(String email, String password) throws AuthenticationException{
-	    User temp = userRepository.findActivatedByEmail(email);
+	    StoreUser temp = userRepository.findActivatedByEmail(email);
 	    if(temp != null && util.passwordMatches(temp.getPassword(), password)){
 	    	currentUser = temp;
 	    }else{
@@ -45,7 +45,7 @@ public class UserController implements Serializable {
 	}
 	
 	public String resetPassword(String email){
-		User u = userRepository.findActivatedByEmail(email);
+		StoreUser u = userRepository.findActivatedByEmail(email);
 		String randomCode = null;
 		if(u != null){
 			randomCode = util.generateRandomCode();
@@ -56,7 +56,7 @@ public class UserController implements Serializable {
 	}
 
 	public void changePasswordFromReset(String code, String email, String newPassword){
-		User u = userRepository.findByResetCodeAndEmail(code, email);
+		StoreUser u = userRepository.findByResetCodeAndEmail(code, email);
 		if(u != null){
 			String hashed = util.getHashedPassword(newPassword);
 			u.setPassword(hashed);
@@ -71,7 +71,7 @@ public class UserController implements Serializable {
 	public void updateCurrentUser(){
 		userRepository.save(currentUser);
 	}
-	public void registerUser(User u){
+	public void registerUser(StoreUser u){
 		u.setId(null);
 		String plainPass = u.getPassword();
 		String hashed = util.getHashedPassword(plainPass);
@@ -84,8 +84,8 @@ public class UserController implements Serializable {
 		System.out.println("subscribe newsletter...");
 		currentUser.setNewsletterSubscribed(subscribe);
 	}
-	public boolean checkUserExists(User u){
-		User user = userRepository.findByEmail(u.getEmail());
+	public boolean checkUserExists(StoreUser u){
+		StoreUser user = userRepository.findByEmail(u.getEmail());
 		if(user != null){
 			//user with that email already exists
 			return true;
@@ -96,11 +96,11 @@ public class UserController implements Serializable {
 	@Produces
 	@LoggedIn
 	@Named
-	public User getCurrentUser() {
+	public StoreUser getCurrentUser() {
 		return currentUser;
 	}
 
-	public void setCurrentUser(User currentUser) {
+	public void setCurrentUser(StoreUser currentUser) {
 		this.currentUser = currentUser;
 	}
 	
