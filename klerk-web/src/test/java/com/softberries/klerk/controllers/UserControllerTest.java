@@ -3,8 +3,11 @@ package com.softberries.klerk.controllers;
 import static org.fest.assertions.Assertions.assertThat;
 
 import javax.inject.Inject;
+import javax.transaction.UserTransaction;
+
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.junit.Arquillian;
+import org.jboss.arquillian.persistence.Transactional;
 import org.jboss.arquillian.persistence.UsingDataSet;
 import org.jboss.shrinkwrap.api.Archive;
 import org.jboss.shrinkwrap.api.ShrinkWrap;
@@ -35,6 +38,8 @@ public class UserControllerTest {
 
 	@Inject
 	private UserController controller;
+	
+	@Inject UserTransaction utx;
 
 	@Test
 	public void testInjection() throws Exception {
@@ -42,6 +47,7 @@ public class UserControllerTest {
 	}
 
 	@Test
+	@Transactional
 	public void registerUserTest() throws Exception {
 		// given
 		StoreUser u = new StoreUser(null, "kris", "krzysztof.grajek@googlemail.com", "0601689689", "kris", true);
@@ -95,7 +101,9 @@ public class UserControllerTest {
 	}
 
 	@Test
+	@Transactional
 	public void activateUserTest() throws Exception {
+
 		// given
 		StoreUser u = new StoreUser(null, "kris", "krzysztof.grajek@googlemail.com", "0601689689", "kris", true);
 		// when
